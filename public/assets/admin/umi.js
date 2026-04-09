@@ -100722,6 +100722,7 @@
             routeActionText: {
                 block: "\u7981\u6b62\u8bbf\u95ee(\u57df\u540d\u76ee\u6807)",
                 block_ip: "\u7981\u6b62\u8bbf\u95ee(IP\u76ee\u6807)",
+                block_port: "\u7981\u6b62\u8bbf\u95ee(\u7aef\u53e3\u76ee\u6807)",
                 protocol: "\u7981\u6b62\u8bbf\u95ee(\u534f\u8bae)",
                 dns: "\u6307\u5b9aDNS\u670d\u52a1\u5668\u8fdb\u884c\u89e3\u6790",
                 route: "\u6307\u5b9a\u51fa\u7ad9\u670d\u52a1\u5668(\u57df\u540d\u76ee\u6807)",
@@ -106291,11 +106292,11 @@
                     value: "vmess"
                 }, "VMess"))), e.protocol != null && e.protocol != "shadowsocks" && y.a.createElement("div", {
                     className: "form-group col-md-6 col-xs-12"
-                }, y.a.createElement("label", null, "\u5b89\u5168\u6027 ", (parseInt(e.tls) != 0 || e.protocol == "anytls" || e.protocol == "hysteria2" || e.protocol == "trojan" || e.protocol == "tuic") && y.a.createElement("a", {
+                }, y.a.createElement("label", null, "\u5b89\u5168\u6027 ", (parseInt(e.tls) != 0 || e.protocol == "hysteria2" || e.protocol == "trojan" || e.protocol == "tuic") && y.a.createElement("a", {
                     href: "javascript:void(0);",
                     onClick: ()=>this.showChildDrawer("\u7f16\u8f91\u5b89\u5168\u6027\u914d\u7f6e", "tls_settings")
                 }, "\u7f16\u8f91\u914d\u7f6e")), y.a.createElement(N["a"], {
-                    value: parseInt(e.tls) || (e.protocol == "anytls" || e.protocol == "hysteria2" || e.protocol == "trojan" || e.protocol == "tuic" ? 1 : 0),
+                    value: parseInt(e.tls) || (e.protocol == "hysteria2" || e.protocol == "trojan" || e.protocol == "tuic" ? 1 : 0),
                     style: {
                         width: "100%"
                     },
@@ -106306,7 +106307,7 @@
                 }, "\u65e0"), y.a.createElement(N["a"].Option, {
                     key: 1,
                     value: 1
-                }, "TLS"), e.protocol == "vless" && y.a.createElement(N["a"].Option, {
+                }, "TLS"), (e.protocol == "vless" || e.protocol == "anytls") && y.a.createElement(N["a"].Option, {
                     key: 2,
                     value: 2
                 }, "Reality")))), e.protocol == "shadowsocks" && y.a.createElement("div", {
@@ -106327,7 +106328,7 @@
                     value: "tcp"
                 }, "TCP"), y.a.createElement(N["a"].Option, {
                     value: "http"
-                }, "HTTP\u4f2a\u88c5")))), e.protocol != null && e.protocol != "hysteria2" && e.protocol != "anytls" && e.protocol != "shadowsocks" && e.protocol != "tuic" && y.a.createElement("div", {
+                }, "HTTP\u4f2a\u88c5")))), e.protocol != null && e.protocol != "hysteria2" && e.protocol != "shadowsocks" && e.protocol != "tuic" && y.a.createElement("div", {
                     className: "row"
                 }, y.a.createElement("div", {
                     className: "form-group col-md-12 col-xs-12"
@@ -111208,6 +111209,9 @@
                         if (action === "protocol") {
                             return "http\ntls\nquic\nbittorrent";
                         }
+                        if (action === "block_port") {
+                            return "53\n443\n1000-2000";
+                        }
                         if (["route_ip", "block_ip"].includes(action)) {
                             return "127.0.0.1(\u5355\u4e00\u5339\u914d)\n10.0.0.0/8(\u8303\u56f4\u5339\u914d)\ngeoip:cn(\u9884\u5b9a\u4e49\u5217\u8868\u5339\u914d)";
                         }
@@ -111242,6 +111246,8 @@
                 }, b["a"].routeActionText["block"]), f.a.createElement(v["a"].Option, {
                     value: "block_ip"
                 }, b["a"].routeActionText["block_ip"]), f.a.createElement(v["a"].Option, {
+                    value: "block_port"
+                }, b["a"].routeActionText["block_port"]), f.a.createElement(v["a"].Option, {
                     value: "protocol"
                 }, b["a"].routeActionText["protocol"]), f.a.createElement(v["a"].Option, {
                     value: "dns"
